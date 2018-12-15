@@ -1,0 +1,12 @@
+<ul class="media-list">
+  <% tasklists.each do |tasklist| %>
+        <div>
+          <%= link_to tasklist.user.name, user_path(tasklist.user) %> <span class="text-muted">posted at <%= tasklist.created_at %></span>
+        </div>
+        <div>
+          <p><%= tasklist.content %></p>
+        </div>
+      </div>
+  <% end %>
+  <%= paginate tasklists %>
+</ul>
