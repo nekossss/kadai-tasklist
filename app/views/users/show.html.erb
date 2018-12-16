@@ -1,2 +1,28 @@
 <h1>Users#show</h1>
-<h1>Users#show</h1>
+  <p>ログイン完了ユーザ: <%= current_user.name %></p>
+  <p>ログイン完了ユーザID: <%= current_user.id %></p>
+  <h1>タスク一覧</h1>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>ステータス</th>
+        <th>タスク</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% User.find(current_user.id).tasks.each do |task|  %>
+        <tr>
+          <td><%= link_to task.id, task %></td>
+          <td><%= task.status %></td>
+          <td><%= task.content %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div>
+    <%= paginate @tasks %>
+  </div>
+  
+  <%= link_to '新規タスク作成', new_task_path, class: "btn btn-primary" %>
